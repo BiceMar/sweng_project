@@ -27,7 +27,7 @@ TEST(MatrixMultiplicationTest, TestMultiplyMatrices) {
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()"; 
 }
 
-TEST(MatrixMultiplicationTest, TestCifreGrosse) {
+TEST(MatrixMultiplicationTest, testThreeDigitNumbers) {
     std::vector<std::vector<int>> A = {
         {1, 2, 3},
         {4, 5, 6},
@@ -51,23 +51,43 @@ TEST(MatrixMultiplicationTest, TestCifreGrosse) {
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()"; 
 }
 
-TEST(MatrixMultiplicationTest, testNullMatrices) {
+TEST(MatrixMultiplicationTest, testSameElementMatrices) {
     std::vector<std::vector<int>> A = {
-        {8}
+        {5}
     };
     std::vector<std::vector<int>> B = {
-        {8}
+        {5}
     };
     std::vector<std::vector<int>> C(1, std::vector<int>(1, 0));
 
     multiplyMatrices(A, B, C, 1, 1, 1);
 
     std::vector<std::vector<int>> expected = {
-        {8}
+        {25}
     };
 
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()"; 
 
+}
+
+TEST(MatrixMultiplicationTest, testZeroMatrices) {
+    std::vector<std::vector<int>> A = {
+        {1, 1},
+        {1, 1}
+    };
+    std::vector<std::vector<int>> B = {
+        {17, 0},
+        {0, 0}
+    };
+    std::vector<std::vector<int>> C(2, std::vector<int>(2, 0));
+
+    multiplyMatrices(A, B, C, 2, 2, 1);
+
+    std::vector<std::vector<int>> expected = {
+        {17}
+    };
+    
+    ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()";
 }
 
 TEST(MatrixMultiplicationTest, testIdentityMatrix) {
@@ -77,7 +97,7 @@ TEST(MatrixMultiplicationTest, testIdentityMatrix) {
         {7, 8, 9}
     };
     std::vector<std::vector<int>> B = {
-        {1, 0 , 0},
+        {1, 0, 0},
         {0, 1, 0},
         {0, 0, 1}
     };
@@ -147,7 +167,7 @@ TEST(MatrixMultiplicationTest, testScalarProduct) {
 
 }
 
-TEST(MatrixMultiplicationTest, GeneratedTest5) {
+TEST(MatrixMultiplicationTest, testDifferentDimensions) {
     std::vector<std::vector<int>> A = {
         {7, 9, 3},
         {5, 8, 3},
@@ -169,7 +189,7 @@ TEST(MatrixMultiplicationTest, GeneratedTest5) {
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()";
 }
 
-TEST(MatrixMultiplicationTest, GeneratedTest99) {
+TEST(MatrixMultiplicationTest, testOneElementMatrices) {
     std::vector<std::vector<int>> A = {
         {99}
     };
@@ -187,7 +207,7 @@ TEST(MatrixMultiplicationTest, GeneratedTest99) {
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()";
 }
 
-TEST(MatrixMultiplicationTest, GeneratedTest88) {
+TEST(MatrixMultiplicationTest, testSameElementInAllMatrices) {
     std::vector<std::vector<int>> A = {
         {8, 8},
         {8, 8}
@@ -207,6 +227,12 @@ TEST(MatrixMultiplicationTest, GeneratedTest88) {
 
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((()";
 }
+
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
